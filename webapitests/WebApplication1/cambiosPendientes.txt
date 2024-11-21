@@ -1,0 +1,7 @@
+Se debe modificar la clase libros, eliminar el bool de si existe el libro cambiarlo por cantidad para almacenar mas de un libro igual
+
+Se debe conectar al Excel para adquiri las datos
+
+Agregar mas interfases
+
+Se debe agregar el log de la unidad 7 

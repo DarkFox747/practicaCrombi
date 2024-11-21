@@ -11,8 +11,8 @@ namespace WebApplication1.Services
         bool PrestarLibro(string isbn, string userId);
         bool DevolverLibro(string isbn, string userId);
         void AgregarLibro(Libro libro);
-        void RegistrarEstudiante(string id, string nombre, string carrera);
-        void RegistrarProfesor(string id, string nombre, string departamento);
+        void RegistrarEstudiante(string id, string nombre);
+        void RegistrarProfesor(string id, string nombre);
         void VerEstadoLibros();
         void VerLibrosPrestadosUsuario(string userId);
     }

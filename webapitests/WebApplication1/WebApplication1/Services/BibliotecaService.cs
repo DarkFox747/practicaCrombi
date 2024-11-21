@@ -64,14 +64,14 @@ namespace WebApplication1.Services
             _context.Libros.Add(libro);
         }
 
-        public void RegistrarEstudiante(string id, string nombre, string carrera)
+        public void RegistrarEstudiante(string id, string nombre)
         {
-            _context.Usuarios.Add(new Estudiante(id, nombre, carrera));
+            _context.Usuarios.Add(new Estudiante(id, nombre));
         }
 
-        public void RegistrarProfesor(string id, string nombre, string departamento)
+        public void RegistrarProfesor(string id, string nombre )
         {
-            _context.Usuarios.Add(new Profesor(id, nombre, departamento));
+            _context.Usuarios.Add(new Profesor(id, nombre));
         }
 
         public void VerEstadoLibros()

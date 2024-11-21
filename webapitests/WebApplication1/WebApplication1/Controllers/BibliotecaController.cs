@@ -73,14 +73,14 @@ namespace WebApplication1.Controllers
         [HttpPost("estudiantes")]
         public ActionResult RegistrarEstudiante([FromBody] RegistroEstudianteRequest request)
         {
-            _bibliotecaService.RegistrarEstudiante(request.ID, request.Nombre, request.Carrera);
+            _bibliotecaService.RegistrarEstudiante(request.ID, request.Nombre);
             return CreatedAtAction(nameof(ObtenerUsuario), new { id = request.ID }, request);
         }
 
         [HttpPost("profesores")]
         public ActionResult RegistrarProfesor([FromBody] RegistroProfesorRequest request)
         {
-            _bibliotecaService.RegistrarProfesor(request.ID, request.Nombre, request.Departamento);
+            _bibliotecaService.RegistrarProfesor(request.ID, request.Nombre);
             return CreatedAtAction(nameof(ObtenerUsuario), new { id = request.ID }, request);
         }
     }

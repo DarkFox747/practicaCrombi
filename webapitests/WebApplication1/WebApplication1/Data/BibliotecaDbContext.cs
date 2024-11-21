@@ -24,10 +24,10 @@ namespace WebApplication1.Data
             Libros.Add(new Libro { Titulo = "El Principito", Autor = "Antoine de Saint-Exupéry", ISBN = "978-0156012195" });
 
             // Agregar usuarios de prueba
-            Usuarios.Add(new Estudiante("E001", "Juan Pérez", "Ingeniería"));
-            Usuarios.Add(new Estudiante("E002", "María García", "Medicina"));
-            Usuarios.Add(new Profesor("P001", "Dr. Ramírez", "Ciencias"));
-            Usuarios.Add(new Profesor("P002", "Dra. Martínez", "Humanidades"));
+            Usuarios.Add(new Estudiante("E001", "Juan Pérez"));
+            Usuarios.Add(new Estudiante("E002", "María García"));
+            Usuarios.Add(new Profesor("P001", "Dr. Ramírez"));
+            Usuarios.Add(new Profesor("P002", "Dra. Martínez"));
         }
     }
 }

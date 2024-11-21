@@ -2,18 +2,17 @@
 {
     public class Profesor : Usuario
     {
-        public string Departamento { get; set; }
+        
 
         public Profesor()
         {
             MaxLibrosPrestados = 5;
         }
 
-        public Profesor(string id, string nombre, string departamento)
+        public Profesor(string id, string nombre)
         {
             ID = id;
             Nombre = nombre;
-            Departamento = departamento;
             MaxLibrosPrestados = 5;
         }
 
