@@ -1,8 +1,15 @@
 using WebApplication1.Data;
 using WebApplication1.Services;
 
+var logFilePath = Path.Combine(
+    AppDomain.CurrentDomain.BaseDirectory,
+    "Logs",
+    "appi-errors.log");
+Directory.CreateDirectory(Path.GetDirectoryName(logFilePath));
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSingleton(new FileLogger(logFilePath));
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -19,5 +26,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
+app.UseMiddleware<ErrorLoggingMiddleware>();
 app.MapControllers();
 app.Run();

@@ -53,6 +53,7 @@ namespace WebApplication1.Controllers
             if (_bibliotecaService.PrestarLibro(request.ISBN, request.UsuarioId))
                 return Ok();
             return BadRequest("No se pudo prestar el libro");
+            
         }
 
         [HttpPost("libros/devolver")]
