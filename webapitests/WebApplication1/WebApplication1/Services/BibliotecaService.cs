@@ -14,17 +14,17 @@ namespace WebApplication1.Services
 
         public IEnumerable<Libro> ObtenerTodosLosLibros() => _context.Libros;
 
-        public Libro ObtenerLibroPorISBN(string isbn) =>
-            _context.Libros.FirstOrDefault(l => l.ISBN == isbn);
+        public Libro ObtenerLibroPorId(string Id) =>
+            _context.Libros.FirstOrDefault(l => l.Id == Id);
 
         public IEnumerable<Usuario> ObtenerTodosLosUsuarios() => _context.Usuarios;
 
         public Usuario ObtenerUsuarioPorId(string id) =>
             _context.Usuarios.FirstOrDefault(u => u.ID == id);
 
-        public bool PrestarLibro(string isbn, string userId)
+        public bool PrestarLibro(string Id, string userId)
         {
-            var libro = _context.Libros.FirstOrDefault(l => l.ISBN == isbn && l.Disponible);
+            var libro = _context.Libros.FirstOrDefault(l => l.Id == Id && l.Disponible);
             var usuario = _context.Usuarios.FirstOrDefault(u => u.ID == userId);
 
             if (libro != null && usuario != null && usuario.PuedePedirPrestado())
@@ -43,12 +43,12 @@ namespace WebApplication1.Services
             return false;
         }
 
-        public bool DevolverLibro(string isbn, string userId)
+        public bool DevolverLibro(string Id, string userId)
         {
             var usuario = _context.Usuarios.FirstOrDefault(u => u.ID == userId);
             if (usuario != null)
             {
-                var libro = usuario.LibrosPrestados.FirstOrDefault(l => l.ISBN == isbn);
+                var libro = usuario.LibrosPrestados.FirstOrDefault(l => l.Id == Id);
                 if (libro != null)
                 {
                     libro.DevolverLibro();
@@ -78,7 +78,7 @@ namespace WebApplication1.Services
         {
             foreach (var libro in _context.Libros)
             {
-                Console.WriteLine($"{libro.Titulo} - {libro.Autor} - ISBN: {libro.ISBN} - " +
+                Console.WriteLine($"{libro.Titulo} - {libro.Autor} - Id: {libro.Id} - " +
                                 $"{(libro.Disponible ? "Disponible" : "Prestado")}");
             }
         }
@@ -91,7 +91,7 @@ namespace WebApplication1.Services
                 Console.WriteLine($"Libros prestados de {usuario.Nombre} ({usuario.ObtenerTipoUsuario()}):");
                 foreach (var libro in usuario.LibrosPrestados)
                 {
-                    Console.WriteLine($"{libro.Titulo} - {libro.Autor} - ISBN: {libro.ISBN}");
+                    Console.WriteLine($"{libro.Titulo} - {libro.Autor} - Id: {libro.Id}");
                 }
             }
         }

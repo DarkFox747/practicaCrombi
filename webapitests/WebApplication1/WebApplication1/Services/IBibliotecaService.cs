@@ -5,11 +5,11 @@ namespace WebApplication1.Services
     public interface IBibliotecaService
     {
         IEnumerable<Libro> ObtenerTodosLosLibros();
-        Libro ObtenerLibroPorISBN(string isbn);
+        Libro ObtenerLibroPorId(string Id);
         IEnumerable<Usuario> ObtenerTodosLosUsuarios();
         Usuario ObtenerUsuarioPorId(string id);
-        bool PrestarLibro(string isbn, string userId);
-        bool DevolverLibro(string isbn, string userId);
+        bool PrestarLibro(string Id, string userId);
+        bool DevolverLibro(string Id, string userId);
         void AgregarLibro(Libro libro);
         void RegistrarEstudiante(string id, string nombre);
         void RegistrarProfesor(string id, string nombre);

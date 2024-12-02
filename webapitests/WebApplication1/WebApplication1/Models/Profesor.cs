@@ -2,12 +2,7 @@
 {
     public class Profesor : Usuario
     {
-        
-
-        public Profesor()
-        {
-            MaxLibrosPrestados = 5;
-        }
+      
 
         public Profesor(string id, string nombre)
         {

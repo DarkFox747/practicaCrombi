@@ -2,7 +2,7 @@
 {
     public class PrestamoRequest
     {
-        public string ISBN { get; set; }
+        public string Id { get; set; }
         public string UsuarioId { get; set; }
     }
 }

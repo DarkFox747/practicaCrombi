@@ -23,10 +23,10 @@ namespace WebApplication1.Controllers
             return Ok(_bibliotecaService.ObtenerTodosLosLibros());
         }
 
-        [HttpGet("libros/{isbn}")]
-        public ActionResult<Libro> ObtenerLibro(string isbn)
+        [HttpGet("libros/{Id}")]
+        public ActionResult<Libro> ObtenerLibro(string Id)
         {
-            var libro = _bibliotecaService.ObtenerLibroPorISBN(isbn);
+            var libro = _bibliotecaService.ObtenerLibroPorId(Id);
             if (libro == null)
                 return NotFound();
             return Ok(libro);
@@ -50,7 +50,7 @@ namespace WebApplication1.Controllers
         [HttpPost("libros/prestar")]
         public ActionResult PrestarLibro([FromBody] PrestamoRequest request)
         {
-            if (_bibliotecaService.PrestarLibro(request.ISBN, request.UsuarioId))
+            if (_bibliotecaService.PrestarLibro(request.Id, request.UsuarioId))
                 return Ok();
             return BadRequest("No se pudo prestar el libro");
             
@@ -59,7 +59,7 @@ namespace WebApplication1.Controllers
         [HttpPost("libros/devolver")]
         public ActionResult DevolverLibro([FromBody] PrestamoRequest request)
         {
-            if (_bibliotecaService.DevolverLibro(request.ISBN, request.UsuarioId))
+            if (_bibliotecaService.DevolverLibro(request.Id, request.UsuarioId))
                 return Ok();
             return BadRequest("No se pudo devolver el libro");
         }
@@ -68,7 +68,7 @@ namespace WebApplication1.Controllers
         public ActionResult AgregarLibro([FromBody] Libro libro)
         {
             _bibliotecaService.AgregarLibro(libro);
-            return CreatedAtAction(nameof(ObtenerLibro), new { isbn = libro.ISBN }, libro);
+            return CreatedAtAction(nameof(ObtenerLibro), new { Id = libro.Id }, libro);
         }
 
         [HttpPost("estudiantes")]
