@@ -2,7 +2,7 @@
 {
     public abstract class Usuario
     {
-        public string ID { get; set; }
+        public string IDUsuarios { get; set; }
         public string Nombre { get; set; }
         public List<Libro> LibrosPrestados { get; set; } = new List<Libro>();
         protected int MaxLibrosPrestados { get; set; }

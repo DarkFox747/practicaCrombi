@@ -5,7 +5,7 @@
         //public string Id { get; set; } = Guid.NewGuid().ToString();
         public string Titulo { get; set; }
         public string Autor { get; set; }
-        public string Id { get; set; }
+        public string IDLibros { get; set; }
         public bool Disponible { get; set; } = true;
         public int cantidad { get; set; }
 

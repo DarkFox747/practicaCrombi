@@ -68,7 +68,7 @@ namespace WebApplication1.Controllers
         public ActionResult AgregarLibro([FromBody] Libro libro)
         {
             _bibliotecaService.AgregarLibro(libro);
-            return CreatedAtAction(nameof(ObtenerLibro), new { Id = libro.Id }, libro);
+            return CreatedAtAction(nameof(ObtenerLibro), new { Id = libro.IDLibros }, libro);
         }
 
         [HttpPost("estudiantes")]

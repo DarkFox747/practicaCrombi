@@ -20,6 +20,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<BibliotecaDbContext>();
 builder.Services.AddScoped<IBibliotecaService, BibliotecaService>();
+builder.Services.AddScoped<ILibroService, LibroService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddSingleton<SqlConnection>(serviceProvider =>
 {
     var configuration = serviceProvider.GetRequiredService<IConfiguration>();

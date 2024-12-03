@@ -6,7 +6,7 @@
 
         public Profesor(string id, string nombre)
         {
-            ID = id;
+            IDUsuarios = id;
             Nombre = nombre;
             MaxLibrosPrestados = 5;
         }
