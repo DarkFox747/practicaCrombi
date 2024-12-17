@@ -9,9 +9,9 @@ namespace WebApplication1.Services
 {
     public class LibroService : ILibroService
     {
-        private readonly IDbConnection _dbConnection;
+        private readonly IDatabaseService _dbConnection;
 
-        public LibroService(IDbConnection dbConnection)
+        public LibroService(IDatabaseService dbConnection)
         {
             _dbConnection = dbConnection;
         }

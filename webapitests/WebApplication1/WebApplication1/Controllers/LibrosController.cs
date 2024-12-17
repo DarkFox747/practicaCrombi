@@ -41,7 +41,7 @@ namespace WebApplication1.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateLibro(int id, [FromBody] Libro libro)
         {
-            if (id != libro.IDLibros) return BadRequest("ID no coincide");
+            //if (id != libro.IDLibros) return BadRequest("ID no coincide");
             var updated = await _libroService.UpdateLibroAsync(libro);
             if (!updated) return NotFound();
             return NoContent();

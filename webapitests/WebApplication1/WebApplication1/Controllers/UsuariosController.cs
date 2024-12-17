@@ -32,9 +32,9 @@ namespace WebApplication1.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUsuario(int id, [FromBody] Usuario usuario)
         {
-            if (id != usuario.IDUsuarios) return BadRequest("ID no coincide");
-            var updated = await _usuarioService.UpdateUsuarioAsync(usuario);
-            if (!updated) return NotFound();
+            //if (id != usuario.IDUsuarios) return BadRequest("ID no coincide.");
+            var actualizado = await _usuarioService.UpdateUsuarioAsync(usuario);
+            if (!actualizado) return NotFound();
             return NoContent();
         }
     }

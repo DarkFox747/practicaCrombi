@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Data.SqlClient;
 using Dapper;
+using System.Data;
 
 var logFilePath = Path.Combine(
     AppDomain.CurrentDomain.BaseDirectory,
@@ -22,12 +23,12 @@ builder.Services.AddSingleton<BibliotecaDbContext>();
 builder.Services.AddScoped<IBibliotecaService, BibliotecaService>();
 builder.Services.AddScoped<ILibroService, LibroService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
-builder.Services.AddSingleton<SqlConnection>(serviceProvider =>
+builder.Services.AddScoped<IDbConnection>(sp =>
 {
-    var configuration = serviceProvider.GetRequiredService<IConfiguration>();
-    var connectionString = configuration.GetConnectionString("DefaultConnection");
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     return new SqlConnection(connectionString);
 });
+
 builder.Services.AddScoped<IDatabaseService, DatabaseService>();
 
 var app = builder.Build();

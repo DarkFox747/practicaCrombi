@@ -1,19 +1,18 @@
 ﻿using Dapper;
-using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
-using static WebApplication1.Services.DatabaseService;
 
 namespace WebApplication1.Services
 {
-
     public class DatabaseService : IDatabaseService
     {
-        private readonly SqlConnection _sqlConnection;
+        private readonly IDbConnection _dbConnection;
 
-        public DatabaseService(SqlConnection sqlConnection)
+        public DatabaseService(IDbConnection dbConnection)
         {
-            _sqlConnection = sqlConnection;
+            _dbConnection = dbConnection ?? throw new ArgumentNullException(nameof(dbConnection));
         }
 
         public async Task<IEnumerable<string>> GetNamesAsync()
@@ -21,8 +20,8 @@ namespace WebApplication1.Services
             try
             {
                 // Consulta simple para obtener datos
-                var query = "SELECT Name FROM SampleTable"; // Asegúrate de tener una tabla llamada SampleTable
-                var result = await _sqlConnection.QueryAsync<string>(query);
+                var query = "SELECT Name FROM SampleTable"; // Asegúrate de que la tabla existe
+                var result = await _dbConnection.QueryAsync<string>(query);
                 return result;
             }
             catch (Exception ex)
