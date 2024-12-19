@@ -5,11 +5,12 @@
         public string IDUsuarios { get; set; }
         public string Nombre { get; set; }
         public List<Libro> LibrosPrestados { get; set; } = new List<Libro>();
+        public DateTime? FechaInactivacion { get; set; }
         protected int MaxLibrosPrestados { get; set; }
 
         public virtual bool PuedePedirPrestado()
         {
-            return LibrosPrestados.Count < MaxLibrosPrestados;
+            return FechaInactivacion == null && LibrosPrestados.Count < MaxLibrosPrestados;
         }
 
         public virtual void AgregarLibroPrestado(Libro libro)
