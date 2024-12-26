@@ -30,6 +30,10 @@ namespace BibliotecaConSQL.Services
             }
         }
 
+
+
+
+
         public void AddUsuario(Usuario usuario, string tipo)
         {
             using (IDbConnection db = _dbContext.CreateConnection())
@@ -43,8 +47,8 @@ namespace BibliotecaConSQL.Services
         {
             using (IDbConnection db = _dbContext.CreateConnection())
             {
-                string query = "DELETE FROM Usuarios WHERE IDUsuarios = @Id";
-                db.Execute(query, new { Id = idUsuario });
+                string query = "UPDATE Usuarios SET FechaInactivacion = @Fecha WHERE IDUsuarios = @ID";
+                db.Execute(query, new { Id = idUsuario, Fecha = DateTime.Now });
             }
         }
     }

@@ -2,26 +2,31 @@
 {
     public class Libro
     {
-        //public string Id { get; set; } = Guid.NewGuid().ToString();
+        public string IDLibros { get; set; }
         public string Titulo { get; set; }
         public string Autor { get; set; }
-        public string IDLibros { get; set; }
+        public int Cantidad { get; set; } = 0;
         public bool Disponible { get; set; } = true;
-        public int cantidad { get; set; }
+        public DateTime? FechaInactivacion { get; set; }
 
         public void PrestarLibro()
         {
-            cantidad -= 1;
-            if (cantidad == 0) {
-                Disponible = false;
-            }            
+            if (Cantidad > 0)
+            {
+                Cantidad -= 1;
+                if (Cantidad == 0)
+                {
+                    Disponible = false;
+                    FechaInactivacion = DateTime.Now;
+                }
+            }
         }
 
         public void DevolverLibro()
         {
-            cantidad += 1;
-            if (cantidad < 0 && Disponible == false) { Disponible = true; }
-            
+            Cantidad += 1;
+            Disponible = true;
+            FechaInactivacion = null;
         }
     }
 }

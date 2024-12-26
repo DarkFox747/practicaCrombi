@@ -1,0 +1,30 @@
+importante elegir la versión 8 en los paquetes de entity framework tanto para el estándar como para el sql.server 
+nuggest Microsoft.entityframeworkscore.tools --v8 . desing -v8
+
+clase gid -- genera id automáticos. es lo que debe utilizarse en prod.
+
+primero tenemos que definir un contexto, creamos una carpeta context y creamos una clase algoContext.cs 
+en esta clase heredamos de :DbContext y DbSet elegimos la clase a migrar. -- 
+creamos un constructor-- ej public Tineda (DbContextOptions<TiendaContext> options) :base (options);
+
+conectar la db builder.serices.addsqlserver<tiendaContext>(buider.configuration.getnneciontring("defaultconnection");
+important tener definida la db. 
+
+en el contextes se define como la orm va a trabajar con la db, se pueden definir sedes 
+
+Dese la consola podemos agregar el add-migratin Firstmigracion -- crea la carpeta migraciones con los archivos del historial de cambios. 
+
+si requerimos eliminar una migración -- Remove-Migration
+
+usamos un update-database para que impacten los cambios.
+
+si agregamos un [] arriba de un atributo es una etiqueta [key] == pk [Required]  --requerido--[MinLength(5)]-- 
+-- la etiqueta [NotMapped] se hace para que el objeto tenga el atributo pero que no impacte en la db.
+si arriba de la clase creamos la etiqueta[table("Producto")] crea la tabla productos y no con el nombre de la clase
+
+
+dentro del controller de un product podemo utilizar .include(p.=> p.Usuario) para traer no solo el el producto si no también el usuario. 
+.theninclude (u=> u.direccion) para traer relaciones anidadas 
+
+
+

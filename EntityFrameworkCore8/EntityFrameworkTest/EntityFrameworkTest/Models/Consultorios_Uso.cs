@@ -6,8 +6,9 @@ namespace EntityFrameworkTest.Models
     {
         public int Id { get; set; }
         public int IdConsultorio { get; set; }
+        public Consultorio Consultorio { get; set; }
         public int IdMedico { get; set; }
-
+        public Medico Medico { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaSalida { get; set; }
     }

@@ -8,5 +8,7 @@ namespace BibliotecaConSQL.Services
         IEnumerable<Libro> ObtenerLibros();
         void AgregarLibro(Libro libro);
         void EliminarLibro(string idLibro);
+
+        public void DevolverLibro(string idLibro);
     }
 }

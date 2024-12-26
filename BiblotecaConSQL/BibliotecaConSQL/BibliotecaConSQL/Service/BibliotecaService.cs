@@ -18,7 +18,7 @@ namespace BibliotecaConSQL.Services
 
         public IEnumerable<Libro> ObtenerLibros()
         {
-            string query = "SELECT * FROM Libros";
+            string query = "SELECT * FROM Libros WHERE FechaInactivacion IS NULL";
             return _dbConnection.Query<Libro>(query);
         }
 
@@ -30,8 +30,14 @@ namespace BibliotecaConSQL.Services
 
         public void EliminarLibro(string idLibro)
         {
-            string query = "DELETE FROM Libros WHERE IDLibros = @ID";
-            _dbConnection.Execute(query, new { ID = idLibro });
+            string query = "UPDATE Libros SET Cantidad = Cantidad - 1, Disponible = CASE WHEN Cantidad - 1 > 0 THEN 1 ELSE 0 END, FechaInactivacion = CASE WHEN Cantidad - 1 = 0 THEN @Fecha ELSE NULL END WHERE IDLibros = @ID";
+            _dbConnection.Execute(query, new { ID = idLibro, Fecha = DateTime.Now });
+        }
+
+        public void DevolverLibro(string idLibro)
+        {
+            string query = "UPDATE Libros SET Cantidad = Cantidad + 1, Disponible = 1, FechaInactivacion = NULL WHERE IDLibros = @ID";
+            _dbConnection.Execute(query, new { ID = idLibro});
         }
     }
 }
