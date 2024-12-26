@@ -7,6 +7,12 @@ namespace EntityFrameworkTest.Context
     {
         public DbSet<Usuarios> Usuarios { get; set; }
 
-        public UsuariosContext(DbContextOptions<UsuariosContext> options) : base(options) { }
+        public UsuariosContext(DbContextOptions<UsuariosContext> options) : base(options) {
+
+        }
+
+
+
+
     }
 }
