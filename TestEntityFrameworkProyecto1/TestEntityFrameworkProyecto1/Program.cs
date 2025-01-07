@@ -36,6 +36,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 //authentication: 
+//admin@example.com Admin123! --- 
 
 builder.Services.AddSwaggerGen(c =>
 {
