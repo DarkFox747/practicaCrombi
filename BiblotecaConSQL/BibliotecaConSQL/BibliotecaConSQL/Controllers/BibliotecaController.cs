@@ -35,5 +35,12 @@ namespace BibliotecaConSQL.Controllers
             _bibliotecaService.EliminarLibro(id);
             return Ok("Libro eliminado correctamente.");
         }
+
+        [HttpPost("libros/{id}")]
+        public IActionResult DevolverLibro(string id)
+        {
+            _bibliotecaService.DevolverLibro(id);
+            return Ok("Libro fue devuelto correctamente.");
+        }
     }
 }

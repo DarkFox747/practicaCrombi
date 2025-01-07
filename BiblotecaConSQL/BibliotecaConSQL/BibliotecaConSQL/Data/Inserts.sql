@@ -30,16 +30,16 @@ INSERT INTO HistorialBiblioteca (IDUsuarios, IDLibros, Accion) VALUES
 (1, 1, 'Devolver'); -- Juan devuelve Libro de Matemáticas
 
 
-INSERT INTO Usuarios (Nombre, TipoUsuario) VALUES
-('Juan', 'Estudiante'),
-('Dr. Ana', 'Profesor'),
-('Usuario_3', 'Profesor'),
-('Usuario_4', 'Profesor'),
-('Usuario_5', 'Estudiante'),
-('Usuario_6', 'Estudiante'),
-('Usuario_7', 'Estudiante'),
-('Usuario_8', 'Profesor'),
-('Usuario_9', 'Profesor'),
-('Usuario_10', 'Estudiante'),
-('Usuario_11', 'Profesor'),
-('Usuario_12', 'Profesor');
+INSERT INTO Usuarios (IDUsuarios,Nombre, TipoUsuario) VALUES
+(1,'Juan', 'Estudiante'),
+(2,'Dr. Ana', 'Profesor'),
+(3,'Usuario_3', 'Profesor'),
+(4,'Usuario_4', 'Profesor'),
+(5,'Usuario_5', 'Estudiante'),
+(6,'Usuario_6', 'Estudiante'),
+(7,'Usuario_7', 'Estudiante'),
+(8,'Usuario_8', 'Profesor'),
+(9,'Usuario_9', 'Profesor'),
+(10,'Usuario_10', 'Estudiante'),
+(11,'Usuario_11', 'Profesor'),
+(12,'Usuario_12', 'Profesor');

@@ -24,19 +24,51 @@ namespace BibliotecaConSQL.Services
 
         public void AgregarLibro(Libro libro)
         {
-            string query = "INSERT INTO Libros (IDLibros, Titulo, Autor, Disponible, cantidad) VALUES (@IDLibros, @Titulo, @Autor, @Disponible, @cantidad)";
+            string query = "INSERT INTO Libros (IDLibros, Titulo, Autor, Disponibilidad, cantidad) VALUES (@IDLibros, @Titulo, @Autor, @Disponibilidad, @cantidad)";
             _dbConnection.Execute(query, libro);
         }
 
+
         public void EliminarLibro(string idLibro)
         {
-            string query = "UPDATE Libros SET Cantidad = Cantidad - 1, Disponible = CASE WHEN Cantidad - 1 > 0 THEN 1 ELSE 0 END, FechaInactivacion = CASE WHEN Cantidad - 1 = 0 THEN @Fecha ELSE NULL END WHERE IDLibros = @ID";
-            _dbConnection.Execute(query, new { ID = idLibro, Fecha = DateTime.Now });
+            try
+            {
+                string queryVerificar = "SELECT Cantidad FROM Libros WHERE IDLibros = @ID";
+                int cantidad = _dbConnection.ExecuteScalar<int>(queryVerificar, new { ID = idLibro });
+
+                if (cantidad == 0)
+                {
+                    throw new KeyNotFoundException("El libro con el ID especificado no existe o ya no hay copias disponibles.");
+                }
+
+                string query = @"
+            UPDATE Libros 
+            SET 
+                Cantidad = Cantidad - 1, 
+                Disponibilidad = CASE 
+                    WHEN Cantidad - 1 > 0 THEN 'Disponible' 
+                    ELSE 'No Disponible' 
+                END, 
+                FechaInactivacion = CASE 
+                    WHEN Cantidad - 1 = 0 THEN @Fecha 
+                    ELSE NULL 
+                END 
+            WHERE IDLibros = @ID";
+
+                _dbConnection.Execute(query, new { ID = idLibro, Fecha = DateTime.Now });
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones, puedes registrar el error o lanzar una excepción personalizada
+                throw new Exception("Ocurrió un error al intentar eliminar el libro.", ex);
+            }
         }
+
+
 
         public void DevolverLibro(string idLibro)
         {
-            string query = "UPDATE Libros SET Cantidad = Cantidad + 1, Disponible = 1, FechaInactivacion = NULL WHERE IDLibros = @ID";
+            string query = "UPDATE Libros SET Cantidad = Cantidad + 1,Disponibilidad = CASE WHEN Cantidad - 1 > 0 THEN 'Disponible' ELSE 'No Disponible'END, FechaInactivacion = NULL WHERE IDLibros = @ID";
             _dbConnection.Execute(query, new { ID = idLibro});
         }
     }

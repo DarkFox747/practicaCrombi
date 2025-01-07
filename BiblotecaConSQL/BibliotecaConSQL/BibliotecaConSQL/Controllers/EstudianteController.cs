@@ -15,10 +15,11 @@ namespace BibliotecaConSQL.Controllers
             _usuarioService = usuarioService;
         }
 
-        [HttpGet]
+        [HttpGet("GetEstudiantes")]
         public IActionResult GetEstudiantes()
         {
-            return Ok(_usuarioService.GetUsuariosPorTipo("Estudiante"));
+            var estudiantes = _usuarioService.GetUsuariosPorTipo("Estudiante");
+            return Ok(estudiantes);
         }
 
         [HttpPost]

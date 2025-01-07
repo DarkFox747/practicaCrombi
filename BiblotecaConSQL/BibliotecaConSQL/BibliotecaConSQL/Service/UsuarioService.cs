@@ -20,13 +20,18 @@ namespace BibliotecaConSQL.Services
             using (IDbConnection db = _dbContext.CreateConnection())
             {
                 string query = @"
-                SELECT u.*, COUNT(h.IdLibro) AS LibrosPrestados 
-                FROM Usuarios u
-                LEFT JOIN HistorialBiblioteca h ON u.IDUsuarios = h.IdUsuario
-                WHERE u.TipoUsuario = @Tipo
-                GROUP BY u.IDUsuarios, u.Nombre, u.TipoUsuario";
+            SELECT 
+                u.IDUsuarios, 
+                u.Nombre, 
+                u.TipoUsuario, 
+                u.FechaInactivacion,
+                COUNT(h.IDLibros) AS LibrosPrestados
+            FROM Usuarios u
+            LEFT JOIN HistorialBiblioteca h ON u.IDUsuarios = h.IDUsuarios
+            WHERE u.TipoUsuario = @TipoUsuario
+            GROUP BY u.IDUsuarios, u.Nombre, u.TipoUsuario, u.FechaInactivacion";
 
-                return db.Query<Usuario>(query, new { Tipo = tipoUsuario });
+                return db.Query<Usuario>(query, new { TipoUsuario = tipoUsuario });
             }
         }
 
