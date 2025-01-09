@@ -37,6 +37,7 @@ namespace TestEntityFrameworkProyecto1.Controllers
             return Ok(products);
         }
 
+
         [HttpGet("{id}")]
         [AllowAnonymous]
         public async Task<ActionResult<ProductDto>> GetProduct(int id)
